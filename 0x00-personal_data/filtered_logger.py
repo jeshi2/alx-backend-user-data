@@ -52,16 +52,9 @@ def get_logger() -> logging.Logger:
     """
     logger = logging.getLogger("user_data")
     logger.setLevel(logging.INFO)
-
-    # Prevent propagation to other loggers
     logger.propagate = False
-
-    # Create a StreamHandler with RedactingFormatter
     stream_handler = logging.StreamHandler()
     stream_handler.setFormatter(RedactingFormatter(PII_FIELDS))
-    # stream_handler.setFormatter(formatter)
-
-    # Add the StreamHandler to the logger
     logger.addHandler(stream_handler)
 
     return logger
