@@ -3,6 +3,7 @@
 filtered_logger module
 """
 import logging
+import csv
 import re
 from typing import List
 
