@@ -61,24 +61,35 @@ def get_logger() -> logging.Logger:
     return logger
 
 
-def get_db():
+def get_db() -> mysql.connector.connection.MySQLConnection:
+    """ Implement db conectivity
     """
-    Connect to the MySQL database and return a MySQLConnection object.
-
-    Returns:
-        mysql.connector.connection.MySQLConnection: MySQL database connection.
-    """
-    username = os.getenv("PERSONAL_DATA_DB_USERNAME", "root")
-    password = os.getenv("PERSONAL_DATA_DB_PASSWORD", "")
-    host = os.getenv("PERSONAL_DATA_DB_HOST", "localhost")
-    database_name = os.getenv("PERSONAL_DATA_DB_NAME")
-
-    # Establishing a connection to the MySQL database
-    db = mysql.connector.connect(
-        user=username,
-        password=password,
+    psw = os.environ.get("PERSONAL_DATA_DB_PASSWORD", "")
+    username = os.environ.get('PERSONAL_DATA_DB_USERNAME', "root")
+    host = os.environ.get('PERSONAL_DATA_DB_HOST', 'localhost')
+    db_name = os.environ.get('PERSONAL_DATA_DB_NAME')
+    conn = mysql.connector.connect(
         host=host,
-        database=database_name
-    )
+        database=db_name,
+        user=username,
+        password=psw)
+    return conn
 
-    return db
+
+def main() -> None:
+    """ Implement a main function
+    """
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM users;")
+    for row in cursor:
+        message = f"name={row[0]}; email={row[1]}; phone={row[2]}; " +\
+            f"ssn={row[3]}; password={row[4]};ip={row[5]}; " +\
+            f"last_login={row[6]}; user_agent={row[7]};"
+        print(message)
+    cursor.close()
+    db.close()
+
+
+if __name__ == '__main__':
+    main()
