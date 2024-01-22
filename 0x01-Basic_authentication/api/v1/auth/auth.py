@@ -26,13 +26,20 @@ class Auth:
 
         for excluded_path in excluded_paths:
             """
-            Add a trailing slash to excluded_path if it doesn't have one
+            Handle wildcards at the end of excluded paths
             """
-            if not excluded_path.endswith('/'):
-                excluded_path += '/'
+            if excluded_path.endswith('*'):
+                if path.startswith(excluded_path[:-1]):
+                    return False
+            else:
+                """
+                Add a trailing slash to excluded_path if it doesn't have one
+                """
+                if not excluded_path.endswith('/'):
+                    excluded_path += '/'
 
-            if path == excluded_path:
-                return False
+                if path == excluded_path:
+                    return False
 
         return True
 
