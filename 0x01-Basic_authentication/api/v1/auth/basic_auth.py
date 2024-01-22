@@ -82,7 +82,7 @@ class BasicAuth(Auth):
         Search for the user in the database based on email
         """
         users = User.search({'email': user_email})
-        if not users or not users[0].is_valid_password(user_pwd):
+        if not users:
             return None
 
         """
@@ -93,7 +93,7 @@ class BasicAuth(Auth):
         """
         Check if the provided password is valid
         """
-        # if not user.is_valid_password(user_pwd):
-            # return None
+        if not user.is_valid_password(user_pwd):
+            return None
 
         return user
