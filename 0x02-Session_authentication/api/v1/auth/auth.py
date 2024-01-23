@@ -66,5 +66,5 @@ class Auth:
             return None
 
         session_cookie_name = current_app.config.get(
-            'SESSION_NAME', '_m')
+            'SESSION_NAME', '_my_session_id')
         return request.cookies.get(session_cookie_name)
