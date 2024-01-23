@@ -66,5 +66,5 @@ class Auth:
             return None
 
         session_cookie_name = current_app.config.get(
-            'SESSION_NAME', '_cookie_cookie_dough')
+            'SESSION_NAME', '_hbnb_yelp_session_id')
         return request.cookies.get(session_cookie_name)
