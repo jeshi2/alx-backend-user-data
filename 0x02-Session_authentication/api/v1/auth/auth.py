@@ -58,3 +58,12 @@ class Auth:
         """ Current User method
         """
         return None
+    
+    def session_cookie(self, request=None) -> str:
+        """ Session Cookie method
+        """
+        if request is None:
+            return None
+
+        session_name = request.app.config.get('SESSION_NAME', '_my_session_id')
+        return request.cookies.get(session_name)
