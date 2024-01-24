@@ -7,6 +7,7 @@ from api.v1.auth.auth import Auth
 from models.user import User
 from typing import TypeVar
 
+
 class SessionAuth(Auth):
     """ SessionAuth class
     """
@@ -45,7 +46,7 @@ class SessionAuth(Auth):
             return None
 
         return User.get(user_id)
-    
+
     def destroy_session(self, request=None) -> bool:
         """ Destroy Session method
         """

@@ -38,7 +38,10 @@ def session_auth_login():
             return jsonify(error="wrong password"), 401
     return jsonify(error="no user found for this email"), 404
 
-@app_views.route('/auth_session/logout', methods=['DELETE'], strict_slashes=False)
+
+@app_views.route('/auth_session/logout',
+                 methods=['DELETE'],
+                 strict_slashes=False)
 def logout():
     """ Log out route
     """
