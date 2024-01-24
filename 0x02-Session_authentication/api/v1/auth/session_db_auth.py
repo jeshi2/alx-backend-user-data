@@ -11,6 +11,7 @@ from datetime import datetime, timedelta
 class SessionDBAuth(SessionExpAuth):
     """ SessionDBAuth class
     """
+
     def create_session(self, user_id=None):
         """ Create a new session and store it in the database
         """
@@ -59,7 +60,8 @@ class SessionDBAuth(SessionExpAuth):
         if not user_id:
             return False
 
-        user_session = UserSession.search({'session_id': session_id, 'user_id': user_id})
+        user_session = UserSession.search(
+            {'session_id': session_id, 'user_id': user_id})
 
         if not user_session:
             return False
