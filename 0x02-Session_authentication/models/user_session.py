@@ -21,7 +21,7 @@ class UserSession(Base):
 
     user_id = Column(String(60), nullable=False)
     session_id = Column(String(60), nullable=False)
-    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    # created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
 
     def __init__(self, *args: list, **kwargs: dict):
         """ Initialize UserSession instance """
