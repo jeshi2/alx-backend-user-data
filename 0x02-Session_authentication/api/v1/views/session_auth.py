@@ -10,7 +10,6 @@ from os import getenv
 
 auth = SessionAuth()
 
-
 @app_views.route('/auth_session/login', methods=['POST'], strict_slashes=False)
 def session_auth_login():
     """ Handles Session authentication login """
