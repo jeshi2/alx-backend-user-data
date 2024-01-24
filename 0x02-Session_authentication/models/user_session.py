@@ -8,8 +8,15 @@ from sqlalchemy import Column, String, DateTime
 
 
 class UserSession(Base):
-    """ UserSession class
     """
+    UserSession class represents the UserSession model.
+
+    Attributes:
+    - user_id: A string representing the user ID.
+    - session_id: A string representing the session ID.
+    - created_at: A datetime object representing the creation timestamp.
+    """
+
     __tablename__ = 'user_sessions'
 
     user_id = Column(String(60), nullable=False)
@@ -17,8 +24,7 @@ class UserSession(Base):
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
 
     def __init__(self, *args: list, **kwargs: dict):
-        """ Initialize UserSession instance
-        """
+        """ Initialize UserSession instance """
         super().__init__(*args, **kwargs)
         self.user_id = kwargs.get('user_id', "")
-        self.session_id = kwargs.get('session_id', "")
+        self.session_id = kwargs.get('session_id', "")")
