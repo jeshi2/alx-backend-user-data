@@ -55,3 +55,17 @@ class DB:
                 "Multiple users found for the given query.")
         except InvalidRequestError:
             raise InvalidRequestError("Invalid query arguments.")
+
+    def update_user(self, user_id: int, **kwargs) -> None:
+        """
+        Update user attributes based on the provided keyword arguments.
+        """
+        user_to_update = self.find_user_by(id=user_id)
+
+        for key, value in kwargs.items():
+            if hasattr(User, key):
+                setattr(user_to_update, key, value)
+            else:
+                raise ValueError(f"Invalid argument: {key}")
+
+        self._session.commit()
